@@ -50,13 +50,16 @@ body {
   max-width: 800px;
   aspect-ratio: 3/2;
 
+  /* مهم: چون تیتر رو absolute می‌کنیم */
+  position: relative;
+
   padding: 20px;
-  padding-top: 160px;
-  padding-bottom: 40px;
+  padding-top: 150px;   /* فضای کافی برای تیتر و نوار بالا */
+  padding-bottom: 50px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center; /* دسکتاپ */
+  justify-content: center;
   align-items: center;
   text-align: center;
 
@@ -78,16 +81,22 @@ body {
   opacity: 1;
 }
 
-/* Text */
-h1 {
+/* تیتر را داخل خود قاب "قفل" می‌کنیم */
+#letter-title {
+  position: absolute;
+  top: 78px;            /* جای تیتر داخل پنجره روی دسکتاپ */
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0 14px;
+
   font-size: 28px;
   line-height: 1.2;
-  margin: 0;
+  text-align: center;
 }
 
-p {
-  margin: 0;
-}
+/* متن‌ها */
+p { margin: 0; }
 
 /* متن صفحه اول */
 #envelope-container p {
@@ -167,16 +176,10 @@ p {
    Mobile: Best Layout Fix
 --------------------------*/
 @media (max-width: 600px) {
-  body {
-    align-items: center;
-    padding-top: 0;
-  }
-
   #envelope {
     width: 160px;
   }
 
-  /* پنجره روی موبایل */
   .letter-window {
     width: 94vw;
     max-width: 520px;
@@ -184,21 +187,22 @@ p {
     aspect-ratio: auto;
     height: min(78vh, 520px);
 
-    /* کلید بالانس: بالا و پایین فاصله منطقی */
-    justify-content: space-between;
+    /* محتوا پایدار و خوش‌بالانس */
+    justify-content: center;
 
-    padding-top: 120px;
+    padding-top: 140px;     /* چون تیتر absolute است، محتوا باید پایین‌تر شروع شود */
     padding-bottom: 70px;
     padding-left: 12px;
     padding-right: 12px;
 
-    gap: 6px;
+    gap: 10px;
   }
 
-  h1 {
+  /* جای تیتر داخل قاب روی موبایل */
+  #letter-title {
+    top: 72px;
     font-size: 18px;
     line-height: 1.15;
-    margin-top: 6px;
   }
 
   .cat {
