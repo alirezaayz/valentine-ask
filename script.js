@@ -1,72 +1,85 @@
 // Elements
 const envelope = document.getElementById("envelope-container");
 const letter = document.getElementById("letter-container");
+
+const letterWindow = document.querySelector(".letter-window");
+
 const noBtn = document.querySelector(".no-btn");
-const yesBtn = document.querySelector(".btn[alt='Yes']");
+const yesBtn = document.querySelector(".yes-btn");
 
 const title = document.getElementById("letter-title");
 const catImg = document.getElementById("letter-cat");
 const buttons = document.getElementById("letter-buttons");
 const finalText = document.getElementById("final-text");
 
+// Safety checks (اگر چیزی پیدا نشد، بی‌صدا خراب نشه)
+if (!envelope || !letter || !letterWindow || !noBtn || !yesBtn || !title || !catImg || !buttons || !finalText) {
+  console.error("Some elements were not found. Check your HTML IDs/classes.");
+}
+
 // Click Envelope
+envelope?.addEventListener("click", () => {
+  envelope.style.display = "none";
+  letter.style.display = "flex";
 
-envelope.addEventListener("click", () => {
-    envelope.style.display = "none";
-    letter.style.display = "flex";
-
-    setTimeout( () => {
-        document.querySelector(".letter-window").classList.add("open");
-    },50);
+  setTimeout(() => {
+    letterWindow.classList.add("open");
+  }, 50);
 });
 
-// Logic to move the NO btn
+// Helper: clamp number inside range
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
 
-noBtn.addEventListener("mouseover", () => {
-    const min = 200;
-    const max = 200;
+// Move NO button (works on desktop + mobile)
+function moveNoButton() {
+  // Distance range (واقعی‌تر از min=max)
+  const minDist = 140;
+  const maxDist = 260;
 
-    const distance = Math.random() * (max - min) + min;
-    const angle = Math.random() * Math.PI * 2;
+  const distance = Math.random() * (maxDist - minDist) + minDist;
+  const angle = Math.random() * Math.PI * 2;
 
-    const moveX = Math.cos(angle) * distance;
-    const moveY = Math.sin(angle) * distance;
+  const moveX = Math.cos(angle) * distance;
+  const moveY = Math.sin(angle) * distance;
 
-    noBtn.style.transition = "transform 0.3s ease";
-    noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
-});
+  // جلوگیری از پریدن بیرون صفحه: محدوده را با ابعاد پنجره می‌بندیم
+  // این روش ساده‌ست: حرکت را محدود می‌کنیم که خیلی دور نره
+  const maxX = window.innerWidth / 3;
+  const maxY = window.innerHeight / 4;
 
-// Logic to make YES btn to grow
+  const safeX = clamp(moveX, -maxX, maxX);
+  const safeY = clamp(moveY, -maxY, maxY);
 
-// let yesScale = 1;
+  noBtn.style.transition = "transform 0.25s ease";
+  noBtn.style.transform = `translate(${safeX}px, ${safeY}px)`;
+}
 
-// yesBtn.style.position = "relative"
-// yesBtn.style.transformOrigin = "center center";
-// yesBtn.style.transition = "transform 0.3s ease";
+// Desktop hover
+noBtn?.addEventListener("pointerenter", moveNoButton);
 
-// noBtn.addEventListener("click", () => {
-//     yesScale += 2;
-
-//     if (yesBtn.style.position !== "fixed") {
-//         yesBtn.style.position = "fixed";
-//         yesBtn.style.top = "50%";
-//         yesBtn.style.left = "50%";
-//         yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
-//     }else{
-//         yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
-//     }
-// });
+// Mobile touch
+noBtn?.addEventListener("touchstart", (e) => {
+  // جلوگیری از کلیک/اسکرول عجیب روی موبایل
+  e.preventDefault();
+  moveNoButton();
+}, { passive: false });
 
 // YES is clicked
+yesBtn?.addEventListener("click", () => {
+  // متن بعد از Yes
+  title.textContent = "عاخجوووون";
 
-yesBtn.addEventListener("click", () => {
-    title.textContent = "عاخجوووون";
+  // گیف نهایی
+  catImg.src = "cat_dance.gif";
 
-    catImg.src = "cat_dance.gif";
+  // حالت نهایی برای کوچک شدن گربه (طبق CSS)
+  letterWindow.classList.add("final");
 
-    document.querySelector(".letter-window").classList.add("final");
+  // مخفی کردن دکمه‌ها
+  buttons.style.display = "none";
 
-    buttons.style.display = "none";
-
-    finalText.style.display = "block";
+  // نمایش متن آخر
+  finalText.style.display = "block";
 });
