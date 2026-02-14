@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>نامه ولنتاین 💌</title>
 
-    <!-- IMPORTANT: renamed CSS to bypass cache -->
     <link rel="stylesheet" href="style.css" />
 
     <!-- Fonts -->
@@ -18,6 +18,10 @@
   </head>
 
   <body>
+    <!-- Audio (hidden) -->
+    <!-- نکته: autoplay نذار. موبایل بلاکش می‌کنه. -->
+    <audio id="bg-audio" preload="auto" playsinline></audio>
+
     <!-- Envelope Screen -->
     <div id="envelope-container">
       <img src="envelope.png" alt="Envelope" id="envelope" />
@@ -27,7 +31,6 @@
     <!-- Letter Screen -->
     <div id="letter-container">
       <div class="letter-window">
-        <!-- Title INSIDE window -->
         <h1 id="letter-title">
           <span dir="ltr">Will you be my Valentine?</span>
         </h1>
