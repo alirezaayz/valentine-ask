@@ -12,12 +12,10 @@ body {
   font-family: "Vazirmatn", sans-serif;
 }
 
-/* متن‌های انگلیسی */
 [dir="ltr"] {
   font-family: "Pixelify Sans", "Aldrich", sans-serif;
 }
 
-/* Envelope Screen */
 #envelope-container {
   text-align: center;
   cursor: pointer;
@@ -32,10 +30,8 @@ body {
 #envelope {
   width: 200px;
   animation: pulse 1.5s infinite;
-  cursor: pointer;
 }
 
-/* Letter Container */
 #letter-container {
   display: none;
   position: fixed;
@@ -44,31 +40,24 @@ body {
   align-items: center;
 }
 
-/* Main Window */
+/* Window */
 .letter-window {
-  width: 90vw;
-  max-width: 800px;
-  aspect-ratio: 3/2;
-
-  /* مهم: چون تیتر رو absolute می‌کنیم */
+  width: 94vw;
+  max-width: 520px;
+  height: min(78vh, 520px);
   position: relative;
-
-  padding: 20px;
-  padding-top: 150px;   /* فضای کافی برای تیتر و نوار بالا */
-  padding-bottom: 50px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  justify-content: center;
 
   background-image: url("window.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 
-  border-radius: 12px;
+  padding: 150px 12px 70px; /* بالا، چپ/راست، پایین */
   gap: 10px;
 
   transform: scale(1.2);
@@ -81,39 +70,40 @@ body {
   opacity: 1;
 }
 
-/* تیتر را داخل خود قاب "قفل" می‌کنیم */
+/* قفل کردن تیتر داخل پنجره (محکم) */
+.letter-window h1,
 #letter-title {
-  position: absolute;
-  top: 78px;            /* جای تیتر داخل پنجره روی دسکتاپ */
-  left: 0;
-  right: 0;
-  margin: 0;
-  padding: 0 14px;
+  position: absolute !important;
+  top: 72px !important;
+  left: 0 !important;
+  right: 0 !important;
 
-  font-size: 28px;
-  line-height: 1.2;
-  text-align: center;
+  margin: 0 !important;
+  padding: 0 14px !important;
+
+  text-align: center !important;
+  font-size: 18px !important;
+  line-height: 1.15 !important;
+
+  /* برای اینکه روی بک‌گراند واضح‌تر باشه */
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
 }
 
-/* متن‌ها */
 p { margin: 0; }
 
-/* متن صفحه اول */
 #envelope-container p {
   font-size: 28px;
   line-height: 1.4;
   padding: 0 14px;
 }
 
-/* متن داخل پنجره */
 #letter-container p {
-  font-size: 22px;
+  font-size: 18px;
 }
 
-/* Cat */
 .cat {
-  width: 220px;
-  margin: 8px 0;
+  width: 155px;
+  margin: 6px 0;
   transition: width 0.4s ease;
 }
 
@@ -121,111 +111,25 @@ p { margin: 0; }
   width: 160px;
 }
 
-/* Buttons */
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  position: relative;
-}
-
-.no-wrapper {
-  position: relative;
+  gap: 14px;
 }
 
 .btn {
-  width: 120px;
-  cursor: pointer;
+  width: 84px;
   user-select: none;
+  cursor: pointer;
 }
 
-.yes-btn,
-.no-btn {
-  width: 120px;
-  height: auto;
-  display: inline-block;
-}
+.no-btn { cursor: default; }
 
-.yes-btn {
-  position: relative;
-  z-index: 2;
-  transform-origin: center center;
-  transition: transform 0.3s ease;
-}
-
-.no-btn {
-  z-index: 1;
-  position: relative;
-  transition: transform 0.15s ease;
-  cursor: default;
-}
-
-/* Final Text */
 .final-text {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.6;
-  text-align: center;
-  display: inline-block;
-  padding: 10px 20px;
+  padding: 8px 12px;
   background-color: rgba(255, 240, 240, 0.65);
   border-radius: 12px;
-  max-width: 85%;
-}
-
-/* -------------------------
-   Mobile: Best Layout Fix
---------------------------*/
-@media (max-width: 600px) {
-  #envelope {
-    width: 160px;
-  }
-
-  .letter-window {
-    width: 94vw;
-    max-width: 520px;
-
-    aspect-ratio: auto;
-    height: min(78vh, 520px);
-
-    /* محتوا پایدار و خوش‌بالانس */
-    justify-content: center;
-
-    padding-top: 140px;     /* چون تیتر absolute است، محتوا باید پایین‌تر شروع شود */
-    padding-bottom: 70px;
-    padding-left: 12px;
-    padding-right: 12px;
-
-    gap: 10px;
-  }
-
-  /* جای تیتر داخل قاب روی موبایل */
-  #letter-title {
-    top: 72px;
-    font-size: 18px;
-    line-height: 1.15;
-  }
-
-  .cat {
-    width: 155px;
-    margin: 6px 0;
-  }
-
-  .buttons {
-    gap: 14px;
-  }
-
-  .btn {
-    width: 84px;
-  }
-
-  #letter-container p {
-    font-size: 18px;
-  }
-
-  .final-text {
-    font-size: 16px;
-    line-height: 1.6;
-    padding: 8px 12px;
-    max-width: 88%;
-  }
+  max-width: 88%;
 }
