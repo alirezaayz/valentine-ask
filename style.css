@@ -9,7 +9,6 @@ body {
   background-size: cover;
   background-position: center;
 
-  /* فارسی پیش‌فرض */
   font-family: "Vazirmatn", sans-serif;
 }
 
@@ -56,7 +55,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; /* دسکتاپ */
   align-items: center;
   text-align: center;
 
@@ -85,17 +84,16 @@ h1 {
   margin: 0;
 }
 
-/* متن کلی پاراگراف‌ها */
 p {
   margin: 0;
 }
 
-/* متن صفحه اول (نامه برای...) */
+/* متن صفحه اول */
 #envelope-container p {
   font-size: 28px;
 }
 
-/* متن داخل پنجره نامه */
+/* متن داخل پنجره */
 #letter-container p {
   font-size: 22px;
 }
@@ -162,7 +160,7 @@ p {
 }
 
 /* -------------------------
-   Mobile Responsive Fix
+   Mobile Responsive Fix (حل مشکل چسبیدن متن به بالای قاب)
 --------------------------*/
 @media (max-width: 600px) {
   body {
@@ -184,26 +182,29 @@ p {
     width: 94vw;
     max-width: 520px;
 
-    /* روی موبایل ratio ثابت اذیت می‌کند */
     aspect-ratio: auto;
-    height: min(78vh, 520px);
+    height: min(80vh, 540px);
 
-    /* محتوا داخل قاب */
-    padding-top: 95px;
+    /* کلید حل مشکل: محتوا از بالا چیده شود */
+    justify-content: flex-start;
+
+    /* این عدد، محتوا را داخل قاب می‌نشاند */
+    padding-top: 135px;
     padding-left: 12px;
     padding-right: 12px;
 
-    gap: 8px;
+    gap: 10px;
   }
 
   h1 {
     font-size: 18px;
-    line-height: 1.2;
+    line-height: 1.15;
+    margin-top: 6px;
   }
 
   .cat {
-    width: 150px;
-    margin: 6px 0;
+    width: 155px;
+    margin: 8px 0;
   }
 
   .buttons {
