@@ -1,3 +1,4 @@
+/* Base */
 * { box-sizing: border-box; }
 
 body{
@@ -14,6 +15,7 @@ body{
   font-family: "Vazirmatn", sans-serif;
 }
 
+/* English text blocks */
 [dir="ltr"]{
   font-family: "Pixelify Sans","Aldrich",sans-serif;
 }
@@ -68,6 +70,7 @@ body{
   background-repeat:no-repeat;
   background-position:center;
 
+  /* Space inside the "window" graphic */
   padding: 150px 14px 80px;
   gap: 12px;
 
@@ -81,6 +84,7 @@ body{
   opacity: 1;
 }
 
+/* Title locked inside the window */
 #letter-title{
   position:absolute;
   top: 70px;
@@ -97,6 +101,7 @@ body{
   text-shadow: 0 1px 0 rgba(255,255,255,0.8);
 }
 
+/* Cat */
 .cat{
   width: min(170px, 42vw);
   margin: 4px 0;
@@ -107,6 +112,7 @@ body{
   width: min(170px, 42vw);
 }
 
+/* Buttons */
 .buttons{
   display:flex;
   justify-content:center;
@@ -122,6 +128,7 @@ body{
 
 .no-btn{ cursor: default; }
 
+/* Final text */
 .final-text{
   margin: 0;
   font-size: clamp(14px, 4.2vw, 18px);
