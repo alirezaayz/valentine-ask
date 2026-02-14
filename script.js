@@ -12,12 +12,61 @@ const catImg = document.getElementById("letter-cat");
 const buttons = document.getElementById("letter-buttons");
 const finalText = document.getElementById("final-text");
 
-// Safety checks (اگر چیزی پیدا نشد، بی‌صدا خراب نشه)
-if (!envelope || !letter || !letterWindow || !noBtn || !yesBtn || !title || !catImg || !buttons || !finalText) {
+// Audio Elements
+const bgAudio = document.getElementById("bg-audio"); // وقتی لینک باز میشه
+const openLetterAudio = document.getElementById("open-letter-audio"); // وقتی نامه باز میشه
+const yesAudio = document.getElementById("yes-audio"); // وقتی Yes زده میشه
+
+// Safety checks
+if (
+  !envelope ||
+  !letter ||
+  !letterWindow ||
+  !noBtn ||
+  !yesBtn ||
+  !title ||
+  !catImg ||
+  !buttons ||
+  !finalText
+) {
   console.error("Some elements were not found. Check your HTML IDs/classes.");
 }
 
-// Click Envelope
+// ---------- Helper: Stop All Audio ----------
+function stopAllAudio() {
+  [bgAudio, openLetterAudio, yesAudio].forEach((audio) => {
+    if (!audio) return;
+    audio.pause();
+    audio.currentTime = 0;
+  });
+}
+
+// ---------- Helper: Play One Audio ----------
+function playExclusive(audio) {
+  if (!audio) return;
+  stopAllAudio();
+  audio.play().catch(() => {
+    // مرورگر ممکنه autoplay رو بلاک کنه
+  });
+}
+
+// ---------- وقتی لینک باز میشه ----------
+window.addEventListener("load", () => {
+  playExclusive(bgAudio);
+});
+
+// اگر autoplay بلاک شد، با اولین تعامل پلی کن
+document.addEventListener(
+  "pointerdown",
+  () => {
+    if (bgAudio && bgAudio.paused) {
+      playExclusive(bgAudio);
+    }
+  },
+  { once: true }
+);
+
+// ---------- Click Envelope ----------
 envelope?.addEventListener("click", () => {
   envelope.style.display = "none";
   letter.style.display = "flex";
@@ -25,16 +74,17 @@ envelope?.addEventListener("click", () => {
   setTimeout(() => {
     letterWindow.classList.add("open");
   }, 50);
+
+  // آهنگ دوم
+  playExclusive(openLetterAudio);
 });
 
-// Helper: clamp number inside range
+// ---------- حرکت دکمه NO ----------
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
-// Move NO button (works on desktop + mobile)
 function moveNoButton() {
-  // Distance range (واقعی‌تر از min=max)
   const minDist = 140;
   const maxDist = 260;
 
@@ -44,8 +94,6 @@ function moveNoButton() {
   const moveX = Math.cos(angle) * distance;
   const moveY = Math.sin(angle) * distance;
 
-  // جلوگیری از پریدن بیرون صفحه: محدوده را با ابعاد پنجره می‌بندیم
-  // این روش ساده‌ست: حرکت را محدود می‌کنیم که خیلی دور نره
   const maxX = window.innerWidth / 3;
   const maxY = window.innerHeight / 4;
 
@@ -56,30 +104,25 @@ function moveNoButton() {
   noBtn.style.transform = `translate(${safeX}px, ${safeY}px)`;
 }
 
-// Desktop hover
 noBtn?.addEventListener("pointerenter", moveNoButton);
 
-// Mobile touch
-noBtn?.addEventListener("touchstart", (e) => {
-  // جلوگیری از کلیک/اسکرول عجیب روی موبایل
-  e.preventDefault();
-  moveNoButton();
-}, { passive: false });
+noBtn?.addEventListener(
+  "touchstart",
+  (e) => {
+    e.preventDefault();
+    moveNoButton();
+  },
+  { passive: false }
+);
 
-// YES is clicked
+// ---------- YES Click ----------
 yesBtn?.addEventListener("click", () => {
-  // متن بعد از Yes
   title.textContent = "عاخجوووون🥳";
-
-  // گیف نهایی
   catImg.src = "cat_dance.gif";
-
-  // حالت نهایی برای کوچک شدن گربه (طبق CSS)
   letterWindow.classList.add("final");
-
-  // مخفی کردن دکمه‌ها
   buttons.style.display = "none";
-
-  // نمایش متن آخر
   finalText.style.display = "block";
+
+  // آهنگ سوم
+  playExclusive(yesAudio);
 });
