@@ -69,7 +69,7 @@ noBtn?.addEventListener("touchstart", (e) => {
 // YES is clicked
 yesBtn?.addEventListener("click", () => {
   // متن بعد از Yes
-  title.textContent = "عاخجوووون";
+  title.textContent = "عاخجوووون🥳";
 
   // گیف نهایی
   catImg.src = "cat_dance.gif";
