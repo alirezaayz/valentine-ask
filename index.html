@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>نامه ولنتاین 💌</title>
 
-    <link rel="stylesheet" href="style.css" />
+    <!-- IMPORTANT: renamed CSS to bypass cache -->
+    <link rel="stylesheet" href="style_v2.css" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,20 +27,15 @@
     <!-- Letter Screen -->
     <div id="letter-container">
       <div class="letter-window">
+        <!-- Title INSIDE window -->
         <h1 id="letter-title">
           <span dir="ltr">Will you be my Valentine?</span>
         </h1>
 
-        <img
-          src="cat_heart.gif"
-          class="cat"
-          id="letter-cat"
-          alt="Cat with heart"
-        />
+        <img src="cat_heart.gif" class="cat" id="letter-cat" alt="Cat with heart" />
 
         <div class="buttons" id="letter-buttons">
           <img src="yes.png" class="btn yes-btn" alt="Yes" />
-
           <div class="no-wrapper">
             <img src="no.png" class="btn no-btn" alt="No" />
           </div>
@@ -51,15 +46,6 @@
         </p>
       </div>
     </div>
-
-    <!-- Audio Files -->
-    <audio id="bg-audio" src="Hello.mp3" preload="auto"></audio>
-    <audio id="open-letter-audio" src="Dracula.mp3" preload="auto"></audio>
-    <audio
-      id="yes-audio"
-      src="The Fate of Ophelia.mp3"
-      preload="auto"
-    ></audio>
 
     <script src="script.js"></script>
   </body>
