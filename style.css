@@ -1,16 +1,17 @@
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-image: url("heart-bg.jpg");
+    background-size: cover;
+    background-position: center;
 
-    /* فارسی پیش‌فرض: خوشگل و خوانا */
     font-family: "Vazirmatn", sans-serif;
 }
 
-/* متن‌های انگلیسی (جاهایی که dir="ltr" گذاشتی) */
+/* متن‌های انگلیسی */
 [dir="ltr"] {
     font-family: "Pixelify Sans", "Aldrich", sans-serif;
 }
@@ -23,7 +24,7 @@ body {
 
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    50% { transform: scale(1.08); }
     100% { transform: scale(1); }
 }
 
@@ -33,6 +34,7 @@ body {
     cursor: pointer;
 }
 
+/* Letter Container */
 #letter-container {
     display: none;
     position: fixed;
@@ -41,11 +43,14 @@ body {
     align-items: center;
 }
 
+/* Main Window */
 .letter-window {
     width: 90vw;
     max-width: 800px;
     aspect-ratio: 3/2;
-    padding: 20px 20px 0 20px;
+
+    padding: 20px;
+    padding-top: 160px;
 
     display: flex;
     flex-direction: column;
@@ -59,8 +64,7 @@ body {
     background-position: center;
 
     border-radius: 12px;
-    gap: 1px;
-    padding-top: 180px;
+    gap: 8px;
 
     transform: scale(1.2);
     opacity: 0;
@@ -72,27 +76,29 @@ body {
     opacity: 1;
 }
 
+/* Text */
 h1 {
-    font-size: 30px;
+    font-size: 28px;
     margin: 0;
 }
 
 p {
-    font-size: 40px;
+    font-size: 28px;
+    margin: 0;
 }
 
 /* Cat */
 .cat {
-    width: 250px;
+    width: 220px;
     margin: 10px 0;
     transition: width 0.4s ease;
 }
 
 .letter-window.final .cat {
-    width: 180px;
+    width: 160px;
 }
 
-/* buttons */
+/* Buttons */
 .buttons {
     display: flex;
     justify-content: center;
@@ -131,12 +137,56 @@ p {
     cursor: default;
 }
 
+/* Final Text */
 .final-text {
-    font-size: 22px;
-    line-height: 1.4;
+    font-size: 20px;
+    line-height: 1.6;
     text-align: center;
     display: inline-block;
     padding: 10px 20px;
-    background-color: rgba(255, 240, 240, 0.5);
+    background-color: rgba(255, 240, 240, 0.6);
     border-radius: 12px;
+}
+
+/* -------------------------
+   Mobile Responsive Fix
+--------------------------*/
+@media (max-width: 600px) {
+
+    body {
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+
+    .letter-window {
+        width: 95vw;
+        padding-top: 110px;
+        gap: 6px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    .cat {
+        width: 150px;
+    }
+
+    .buttons {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 85px;
+    }
+
+    .final-text {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
 }
