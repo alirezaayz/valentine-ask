@@ -1,192 +1,227 @@
 body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("heart-bg.jpg");
-    background-size: cover;
-    background-position: center;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    font-family: "Vazirmatn", sans-serif;
+  background-image: url("heart-bg.jpg");
+  background-size: cover;
+  background-position: center;
+
+  /* فارسی پیش‌فرض */
+  font-family: "Vazirmatn", sans-serif;
 }
 
 /* متن‌های انگلیسی */
 [dir="ltr"] {
-    font-family: "Pixelify Sans", "Aldrich", sans-serif;
+  font-family: "Pixelify Sans", "Aldrich", sans-serif;
 }
 
 /* Envelope Screen */
 #envelope-container {
-    text-align: center;
-    cursor: pointer;
+  text-align: center;
+  cursor: pointer;
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
 }
 
 #envelope {
-    width: 200px;
-    animation: pulse 1.5s infinite;
-    cursor: pointer;
+  width: 200px;
+  animation: pulse 1.5s infinite;
+  cursor: pointer;
 }
 
 /* Letter Container */
 #letter-container {
-    display: none;
-    position: fixed;
-    inset: 0;
-    justify-content: center;
-    align-items: center;
+  display: none;
+  position: fixed;
+  inset: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Main Window */
 .letter-window {
-    width: 90vw;
-    max-width: 800px;
-    aspect-ratio: 3/2;
+  width: 90vw;
+  max-width: 800px;
+  aspect-ratio: 3/2;
 
-    padding: 20px;
-    padding-top: 160px;
+  padding: 20px;
+  padding-top: 160px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
-    background-image: url("window.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  background-image: url("window.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 
-    border-radius: 12px;
-    gap: 8px;
+  border-radius: 12px;
+  gap: 8px;
 
-    transform: scale(1.2);
-    opacity: 0;
-    transition: transform 0.6s ease, opacity 0.6s ease;
+  transform: scale(1.2);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
 .letter-window.open {
-    transform: scale(1);
-    opacity: 1;
+  transform: scale(1);
+  opacity: 1;
 }
 
 /* Text */
 h1 {
-    font-size: 28px;
-    margin: 0;
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0;
 }
 
+/* متن کلی پاراگراف‌ها */
 p {
-    font-size: 28px;
-    margin: 0;
+  margin: 0;
+}
+
+/* متن صفحه اول (نامه برای...) */
+#envelope-container p {
+  font-size: 28px;
+}
+
+/* متن داخل پنجره نامه */
+#letter-container p {
+  font-size: 22px;
 }
 
 /* Cat */
 .cat {
-    width: 220px;
-    margin: 10px 0;
-    transition: width 0.4s ease;
+  width: 220px;
+  margin: 10px 0;
+  transition: width 0.4s ease;
 }
 
 .letter-window.final .cat {
-    width: 160px;
+  width: 160px;
 }
 
 /* Buttons */
 .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  position: relative;
 }
 
 .no-wrapper {
-    position: relative;
+  position: relative;
 }
 
 .btn {
-    width: 120px;
-    cursor: pointer;
-    user-select: none;
+  width: 120px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .yes-btn,
 .no-btn {
-    width: 120px;
-    height: auto;
-    display: inline-block;
+  width: 120px;
+  height: auto;
+  display: inline-block;
 }
 
 .yes-btn {
-    position: relative;
-    z-index: 2;
-    transform-origin: center center;
-    transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+  transform-origin: center center;
+  transition: transform 0.3s ease;
 }
 
 .no-btn {
-    z-index: 1;
-    position: relative;
-    transition: transform 0.15s ease;
-    cursor: default;
+  z-index: 1;
+  position: relative;
+  transition: transform 0.15s ease;
+  cursor: default;
 }
 
 /* Final Text */
 .final-text {
-    font-size: 20px;
-    line-height: 1.6;
-    text-align: center;
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: rgba(255, 240, 240, 0.6);
-    border-radius: 12px;
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: center;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgba(255, 240, 240, 0.6);
+  border-radius: 12px;
 }
 
 /* -------------------------
    Mobile Responsive Fix
 --------------------------*/
 @media (max-width: 600px) {
+  body {
+    align-items: center;
+    padding-top: 0;
+  }
 
-    body {
-        align-items: flex-start;
-        padding-top: 40px;
-    }
+  #envelope {
+    width: 160px;
+  }
 
-    .letter-window {
-        width: 95vw;
-        padding-top: 110px;
-        gap: 6px;
-    }
+  #envelope-container p {
+    font-size: 28px;
+    line-height: 1.4;
+    padding: 0 14px;
+  }
 
-    h1 {
-        font-size: 20px;
-    }
+  .letter-window {
+    width: 94vw;
+    max-width: 520px;
 
-    p {
-        font-size: 20px;
-    }
+    /* روی موبایل ratio ثابت اذیت می‌کند */
+    aspect-ratio: auto;
+    height: min(78vh, 520px);
 
-    .cat {
-        width: 150px;
-    }
+    /* محتوا داخل قاب */
+    padding-top: 95px;
+    padding-left: 12px;
+    padding-right: 12px;
 
-    .buttons {
-        flex-direction: row;
-        gap: 15px;
-    }
+    gap: 8px;
+  }
 
-    .btn {
-        width: 85px;
-    }
+  h1 {
+    font-size: 18px;
+    line-height: 1.2;
+  }
 
-    .final-text {
-        font-size: 16px;
-        padding: 8px 12px;
-    }
+  .cat {
+    width: 150px;
+    margin: 6px 0;
+  }
+
+  .buttons {
+    gap: 14px;
+  }
+
+  .btn {
+    width: 84px;
+  }
+
+  #letter-container p {
+    font-size: 18px;
+  }
+
+  .final-text {
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 8px 12px;
+    max-width: 86%;
+  }
 }
