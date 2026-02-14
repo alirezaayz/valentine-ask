@@ -1,135 +1,133 @@
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+* { box-sizing: border-box; }
 
-  background-image: url("heart-bg.jpg");
+body{
+  margin:0;
+  min-height: 100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background-image:url("heart-bg.jpg");
   background-size: cover;
   background-position: center;
 
   font-family: "Vazirmatn", sans-serif;
 }
 
-[dir="ltr"] {
-  font-family: "Pixelify Sans", "Aldrich", sans-serif;
+[dir="ltr"]{
+  font-family: "Pixelify Sans","Aldrich",sans-serif;
 }
 
-#envelope-container {
-  text-align: center;
-  cursor: pointer;
+/* Envelope Screen */
+#envelope-container{
+  text-align:center;
+  cursor:pointer;
+  padding: 20px;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
 }
 
-#envelope {
-  width: 200px;
-  animation: pulse 1.5s infinite;
+#envelope{
+  width:min(220px, 55vw);
+  animation:pulse 1.5s infinite;
+  cursor:pointer;
 }
 
-#letter-container {
-  display: none;
-  position: fixed;
-  inset: 0;
-  justify-content: center;
-  align-items: center;
+#envelope-container p{
+  margin: 14px 0 0;
+  font-size: clamp(20px, 5vw, 34px);
+  line-height: 1.5;
 }
 
-/* Window */
-.letter-window {
-  width: 94vw;
-  max-width: 520px;
-  height: min(78vh, 520px);
-  position: relative;
+/* Letter Screen */
+#letter-container{
+  display:none;
+  position:fixed;
+  inset:0;
+  justify-content:center;
+  align-items:center;
+  padding: 14px;
+}
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.letter-window{
+  position:relative;
+  width:min(520px, 94vw);
+  height:min(560px, 78vh);
 
-  background-image: url("window.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 
-  padding: 150px 12px 70px; /* بالا، چپ/راست، پایین */
-  gap: 10px;
+  background-image:url("window.png");
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+
+  padding: 150px 14px 80px;
+  gap: 12px;
 
   transform: scale(1.2);
   opacity: 0;
   transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-.letter-window.open {
+.letter-window.open{
   transform: scale(1);
   opacity: 1;
 }
 
-/* قفل کردن تیتر داخل پنجره (محکم) */
-.letter-window h1,
-#letter-title {
-  position: absolute !important;
-  top: 72px !important;
-  left: 0 !important;
-  right: 0 !important;
+#letter-title{
+  position:absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
 
-  margin: 0 !important;
-  padding: 0 14px !important;
+  margin:0;
+  padding: 0 16px;
 
-  text-align: center !important;
-  font-size: 18px !important;
-  line-height: 1.15 !important;
+  text-align:center;
+  font-size: clamp(16px, 4vw, 20px);
+  line-height: 1.2;
 
-  /* برای اینکه روی بک‌گراند واضح‌تر باشه */
   text-shadow: 0 1px 0 rgba(255,255,255,0.8);
 }
 
-p { margin: 0; }
-
-#envelope-container p {
-  font-size: 28px;
-  line-height: 1.4;
-  padding: 0 14px;
-}
-
-#letter-container p {
-  font-size: 18px;
-}
-
-.cat {
-  width: 155px;
-  margin: 6px 0;
+.cat{
+  width: min(170px, 42vw);
+  margin: 4px 0;
   transition: width 0.4s ease;
 }
 
-.letter-window.final .cat {
-  width: 160px;
+.letter-window.final .cat{
+  width: min(170px, 42vw);
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
+.buttons{
+  display:flex;
+  justify-content:center;
   gap: 14px;
+  align-items:center;
 }
 
-.btn {
-  width: 84px;
-  user-select: none;
-  cursor: pointer;
+.btn{
+  width: min(92px, 22vw);
+  user-select:none;
+  cursor:pointer;
 }
 
-.no-btn { cursor: default; }
+.no-btn{ cursor: default; }
 
-.final-text {
-  font-size: 16px;
-  line-height: 1.6;
-  padding: 8px 12px;
-  background-color: rgba(255, 240, 240, 0.65);
-  border-radius: 12px;
-  max-width: 88%;
+.final-text{
+  margin: 0;
+  font-size: clamp(14px, 4.2vw, 18px);
+  line-height: 1.7;
+  padding: 10px 14px;
+  background-color: rgba(255,240,240,0.65);
+  border-radius: 14px;
+  max-width: 92%;
 }
